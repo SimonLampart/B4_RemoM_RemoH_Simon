@@ -6,21 +6,35 @@ body {
     color: #333;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Stellt sicher, dass der Footer am unteren Rand ist, wenn der Inhalt kurz ist */
+    min-height: 100vh; /* Wichtig für den Sticky Footer Ansatz */
+    align-items: center; /* Zentriert den Container horizontal */
 }
 
-header, footer {
+.container {
+    max-width: 960px; /* Definiert die maximale Breite des Hauptinhalts */
+    width: 100%; /* Stellt sicher, dass er auf kleineren Bildschirmen nicht überläuft */
+    padding: 20px;
+    box-sizing: border-box; /* Padding und Border werden in die Breite einbezogen */
+}
+
+header {
     background-color: #333;
     color: white;
     padding: 20px;
-    text-align: center;
     display: flex;
-    justify-content: space-between; /* Verteilt Logo und Navigation */
-    align-items: center; /* Zentriert die Elexmente vertikal */
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* Header auch volle Breite */
+    box-sizing: border-box;
+    z-index: 10; /* Stellt sicher, dass der Header über dem Leadbild liegt */
 }
 
 header .logo-placeholder {
     font-size: 1.2em;
+}
+
+header nav {
+    display: flex;
 }
 
 header nav ul {
@@ -39,30 +53,258 @@ header nav ul li a {
     text-decoration: none;
 }
 
-main {
-    padding: 20px;
-    flex-grow: 1; /* Lässt den Hauptbereich den verfügbaren Platz einnehmen */
+.burger-menu {
+    display: none;
+    cursor: pointer;
 }
 
-h1 {
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0;
+    display: block;
+}
+
+/* Full Width Lead Image (Bildschirmbreite) */
+.full-width-lead-image {
+    width: 100vw; /* Viewport Width: Nimmt die volle Breite des Bildschirms ein */
+    margin-left: calc(-100vw / 2 + 100% / 2); /* Zentriert das Bild bei voller Bildschirmbreite */
+    margin-right: calc(-100vw / 2 + 100% / 2);
+    margin-bottom: 0;
+}
+
+.full-width-lead-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* Optional: Skaliert das Bild und schneidet es bei Bedarf zu */
+}
+
+/* Lead Text (direkt unter dem Bild) */
+.lead-text {
+    width: 100%;
+    margin-bottom: 30px;
+    text-align: left;
+    padding: 20px; /* Optional: Innenabstand für den Text */
+    box-sizing: border-box; /* Stellt sicher, dass Padding die Breite nicht beeinflusst */
+    background-color: rgba(244, 244, 244, 0.8); /* Optional: Hintergrund für bessere Lesbarkeit */
+}
+
+.lead-text h1 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.lead-text p {
+    line-height: 1.7;
+    font-size: 1.1em;
+    color: #555;
+}
+
+/* Two Columns Layout */
+.two-columns {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+    align-items: center; /* Zentriert die Spalten vertikal */
+}
+
+.two-columns .column-left {
+    flex: 1; /* Nimmt den verfügbaren Platz gleichmäßig auf */
+}
+
+.two-columns .column-left img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 5px; /* Optional: Abgerundete Ecken */
+}
+
+.two-columns .column-right {
+    flex: 1;
+}
+
+.two-columns .column-right h2 {
+    color: #333;
     margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.two-columns .column-right p {
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.two-columns .column-right .read-more-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    display: block; /* Macht den Button zu einem Block-Element */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.two-columns .column-right .read-more-button:hover {
+    background-color: #0056b3;
+}
+
+/* Restliche Styles (unverändert) */
+main {
+    padding: 20px;
+    flex-grow: 1;
+    width: 100%; /* Stellt sicher, dass main innerhalb des Containers liegt */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Zentriert die nachfolgenden Sections im Container */
+    padding-top: 0; /* Entferne den oberen Padding */
+}
+
+main > section {
+    width: 100%; /* Macht die Sections innerhalb von main volle Breite des Containers */
+    margin-bottom: 30px; /* Fügt etwas Abstand zwischen den Sections hinzu */
+    box-sizing: border-box;
+}
+
+main > section:last-child {
+    margin-bottom: 0; /* Entfernt den unteren Rand der letzten Section */
 }
 
 h2 {
     color: #555;
+    margin-bottom: 15px;
+    text-align: left;
 }
 
-.image-placeholder {
-    background-color: #ddd;
-    color: #777;
-    padding: 50px;
-    text-align: center;
+.text-section p {
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.text-with-aside {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.text-with-aside .main-content {
+    flex-grow: 1;
+}
+
+.text-with-aside .side-info {
+    flex-basis: 300px;
+    background-color: #e9e9e9;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.multicolumn-text .columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.multicolumn-text .columns p {
+    flex-basis: calc(50% - 10px);
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .multicolumn-text .columns p {
+        flex-basis: 100%;
+    }
+}
+
+.image-with-caption .image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-top: 20px;
 }
 
+.image-with-caption .image-placeholder {
+    background-color: #ddd;
+    color: #777;
+    padding: 30px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.image-with-caption figcaption {
+    font-size: 0.9em;
+    color: #777;
+    text-align: center;
+}
+
 footer {
-    position: sticky; /* Macht den Footer "sticky" am unteren Rand */
-    bottom: 0;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
     width: 100%;
-    box-sizing: border-box; /* Verhindert, dass Padding die Breite beeinflusst */
+    box-sizing: border-box;
+    /* Sticky Footer Ansatz */
+    margin-top: auto; /* Schiebt den Footer ganz nach unten */
+    position: relative; /* Wichtig für die z-index Steuerung im JS */
+    bottom: -60px; /* Anfänglich versteckt */
+    transition: bottom 0.3s ease-in-out;
+}
+
+footer.visible {
+    bottom: 0;
+}
+
+/* Media Query für Tablettformat und kleiner (Burger-Menü) */
+@media (max-width: 700px) {
+    header nav {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #333;
+        flex-direction: column;
+        align-items: flex-start;
+        z-index: 10;
+    }
+
+    header nav.open {
+        display: flex;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    header nav ul li {
+        margin: 0;
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #555;
+    }
+
+    header nav ul li:last-child {
+        border-bottom: none;
+    }
+
+    .burger-menu {
+        display: block;
+    }
+
+    /* Anpassungen für das Layout unter 700px (optional) */
+    .two-columns {
+        flex-direction: column; /* Unter 700px untereinander anzeigen */
+    }
+
+    .two-columns .column-right {
+        margin-top: 20px; /* Etwas Abstand zum Bild */
+    }
 }
