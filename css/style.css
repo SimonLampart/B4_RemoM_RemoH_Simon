@@ -18,7 +18,7 @@ body {
 }
 
 header {
-    background-color: #333;
+    background-color: #EA4F8B;
     color: white;
     padding: 20px;
     display: flex;
@@ -51,6 +51,18 @@ header nav ul li {
 header nav ul li a {
     color: white;
     text-decoration: none;
+    transition: color 0.3s ease; /* Sanfter Übergang für den Hover-Effekt */
+}
+
+header nav ul li a:hover {
+    color: #FFD1DC; /* Sehr helles Pastellpink */
+}
+
+
+header nav ul li a.active {
+    font-weight: bold; /* Macht den Link fett */
+    text-decoration: underline; /* Fügt eine Unterstreichung hinzu */
+    /* Optional: Hintergrundfarbe oder andere Hervorhebungen */
 }
 
 .burger-menu {
@@ -68,16 +80,19 @@ header nav ul li a {
 
 /* Full Width Lead Image (Bildschirmbreite) */
 .full-width-lead-image {
-    width: 100vw; /* Viewport Width: Nimmt die volle Breite des Bildschirms ein */
-    margin-left: calc(-100vw / 2 + 100% / 2); /* Zentriert das Bild bei voller Bildschirmbreite */
+    width: 100vw;
+    margin-left: calc(-100vw / 2 + 100% / 2);
     margin-right: calc(-100vw / 2 + 100% / 2);
     margin-bottom: 0;
+    margin-top: -20px; /* Entfernt den Abstand zum Header */
+
 }
+
 
 .full-width-lead-image img {
     display: block;
     width: 100%;
-    height: auto;
+    height: 20em;
     object-fit: cover; /* Optional: Skaliert das Bild und schneidet es bei Bedarf zu */
 }
 
@@ -91,9 +106,10 @@ header nav ul li a {
     background-color: rgba(244, 244, 244, 0.8); /* Optional: Hintergrund für bessere Lesbarkeit */
 }
 
-.lead-text h1 {
-    color: #333;
+h1 {
+    color: #EA4F8B;
     margin-bottom: 10px;
+    font-size: 3em;
 }
 
 .lead-text p {
@@ -138,7 +154,7 @@ header nav ul li a {
 }
 
 .two-columns .column-right .read-more-button {
-    background-color: #007bff;
+    background-color: #EA4F8B;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -152,7 +168,7 @@ header nav ul li a {
 }
 
 .two-columns .column-right .read-more-button:hover {
-    background-color: #0056b3;
+    background-color: #EA6C8B;
 }
 
 /* Restliche Styles (unverändert) */
@@ -164,7 +180,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center; /* Zentriert die nachfolgenden Sections im Container */
-    padding-top: 0; /* Entferne den oberen Padding */
+
 }
 
 main > section {
@@ -244,7 +260,7 @@ h2 {
 }
 
 footer {
-    background-color: #333;
+    background-color: #EA4F8B;
     color: white;
     padding: 20px;
     text-align: center;
@@ -269,7 +285,7 @@ footer.visible {
         top: 60px;
         left: 0;
         width: 100%;
-        background-color: #333;
+        background-color: #EA4F8B;
         flex-direction: column;
         align-items: flex-start;
         z-index: 10;
@@ -288,7 +304,7 @@ footer.visible {
         margin: 0;
         padding: 15px;
         text-align: left;
-        border-bottom: 1px solid #555;
+        border-bottom: 1px solid #EA4F8B;
     }
 
     header nav ul li:last-child {
