@@ -16,7 +16,7 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#">Link 1</a></li>
+                <li><a href="#" class="active">Link 1</a></li>
                 <li><a href="#">Link 2</a></li>
                 <li><a href="#">Link 3</a></li>
             </ul>
@@ -27,7 +27,6 @@
         <section class="lead-image full-width-lead-image">
             <img src="images/lead.jpeg" alt="Leadbild">
         </section>
-
         <section class="lead-text">
             <h1>Die Wichtigkeit von gutem Design</h1>
             <p>Einleitungstext, der die Hauptaussage der Seite zusammenfasst. Dieser Text ist über die volle Breite und soll den Leser neugierig machen, mehr zu erfahren. Er kann etwas länger sein und die wichtigsten Punkte anteasern.</p>
@@ -81,9 +80,15 @@
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2025 Meine Webseite</p>
-    </footer>
+<footer>
+    <p>&copy; 2025 Schulprojekt - Keine reale Website</p>
+    <p>Mitwirkende: Remo Hess, Remo Auf der Maur, Simon Lampart</p>
+    <div class="social-links">
+        <a href="#" target="_blank" rel="noopener noreferrer">Facebook</a> |
+        <a href="#" target="_blank" rel="noopener noreferrer">Twitter</a> |
+        <a href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
+    </div>
+</footer>
 
     <script>
 const burgerMenu = document.querySelector('.burger-menu');
@@ -115,6 +120,18 @@ window.addEventListener('resize', checkFooterVisibility); // Auch bei Fenstergr�
 
 // Initial einmal prüfen, falls der Inhalt nicht sofort Scrollen erfordert
 checkFooterVisibility();
+
+// JavaScript für die aktive Klasse (optional, falls du es dynamisch setzen möchtest)
+document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('header nav ul li a');
+    const currentPath = window.location.pathname;
+
+    navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPath) {
+            link.classList.add('active');
+        }
+    });
+});
     </script>
 </body>
 </html>
