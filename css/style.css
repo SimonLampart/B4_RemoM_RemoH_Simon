@@ -196,7 +196,7 @@ main > section:last-child {
 h2 {
     color: #555;
     margin-bottom: 15px;
-    text-align: left;
+    /* text-align: left; <- Entfernt oder überschrieben für image-with-caption h2 */
 }
 
 .text-section p {
@@ -238,23 +238,47 @@ h2 {
     }
 }
 
+/* ANPASSUNGEN FÜR IMAGE-WITH-CAPTION */
+.image-with-caption {
+    text-align: center; /* Zentriert die Inline-Block-Elemente innerhalb */
+}
+
+.image-with-caption h2 {
+    text-align: center; /* Zentriert den Titel für diese Sektion */
+}
+
 .image-with-caption .image-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
+    display: inline-block; /* Elemente nebeneinander anzeigen */
+    vertical-align: top; /* Oben ausrichten */
+    margin: 10px; /* Abstand zwischen den Bildern reduziert */
+    width: 150px; /* Feste Breite für die Bild-Container, reduziert für 6 Bilder */
+    max-width: calc(16.66% - 20px); /* Für sechs Bilder pro Reihe (100% / 6 = 16.66%) und 2*10px margin */
+    box-sizing: border-box;
 }
 
 .image-with-caption .image-placeholder {
     background-color: #ddd;
     color: #777;
-    padding: 30px;
     text-align: center;
     margin-bottom: 10px;
 }
 
+/* Anpassung für die Bild-Platzhalter */
+.image-with-caption .image-placeholder.small {
+    width: 100%; /* Bild füllt den Container aus */
+    height: 100px; /* Feste Höhe für die Bilder, reduziert */
+    object-fit: cover; /* Schneidet das Bild, wenn nötig */
+    background-color: #ddd;
+    color: #777;
+    display: flex; /* Zum Zentrieren des Textes im Platzhalter */
+    justify-content: center; /* Horizontal zentrieren */
+    align-items: center; /* Vertikal zentrieren */
+    font-size: 1em; /* Schriftgröße im Platzhalter leicht reduziert */
+}
+
+
 .image-with-caption figcaption {
-    font-size: 0.9em;
+    font-size: 0.8em; /* Bildunterschrift etwas kleiner */
     color: #777;
     text-align: center;
 }
@@ -322,5 +346,34 @@ footer.visible {
 
     .two-columns .column-right {
         margin-top: 20px; /* Etwas Abstand zum Bild */
+    }
+}
+
+/* MEDIA QUERIES FÜR IMAGE-WITH-CAPTION RESPONSIVITÄT */
+/* Bei 960px und kleiner: 4 Bilder pro Reihe */
+@media (max-width: 960px) {
+    .image-with-caption .image-container {
+        max-width: calc(25% - 20px); /* Vier Bilder pro Reihe (100% / 4 = 25%) */
+    }
+}
+
+/* Bei 768px und kleiner: 3 Bilder pro Reihe */
+@media (max-width: 768px) {
+    .image-with-caption .image-container {
+        max-width: calc(33.33% - 20px); /* Drei Bilder pro Reihe */
+    }
+}
+
+/* Bei 480px und kleiner: 2 Bilder pro Reihe */
+@media (max-width: 480px) {
+    .image-with-caption .image-container {
+        max-width: calc(50% - 20px); /* Zwei Bilder pro Reihe */
+    }
+}
+
+/* Bei 320px und kleiner: 1 Bild pro Reihe (für sehr kleine Handys) */
+@media (max-width: 320px) {
+    .image-with-caption .image-container {
+        max-width: calc(100% - 20px); /* Ein Bild pro Reihe */
     }
 }
