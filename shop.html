@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gourmet Globe</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo-placeholder">Logo</div>
+        <div class="burger-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html" class="active">Shop</a></li>
+                <li><a href="contact.html">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <section class="lead-text">
+            <h1>Shop</h1>
+        </section>
+
+        <section class="two-columns">
+            <div class="column-left">
+                <img src="images/lead.jpeg" alt="Bild links">
+            </div>
+            <div class="column-right">
+                <h2>Produkt</h2>
+                <p>Kurzer Text, der das Bild links ergänzt. Er kann spezifische Informationen hervorheben oder eine andere Perspektive bieten.</p>
+                <button class="read-more-button">Mehr lesen</button>
+            </div>
+        </section>
+
+
+
+        <section class="image-with-caption">
+            <h2>Bild mit Bildunterschrift</h2>
+            <div class="image-container">
+                <div class="image-placeholder small">Bild</div>
+                <figcaption>Produkt</figcaption>
+            </div>
+            <div class="image-container">
+                <div class="image-placeholder small">Bild</div>
+                <figcaption>Produkt</figcaption>
+            </div>
+            <div class="image-container">
+                <div class="image-placeholder small">Bild</div>
+                <figcaption>Produkt</figcaption>
+            </div>
+            <div class="image-container">
+                <div class="image-placeholder small">Bild</div>
+                <figcaption>Produkt</figcaption>
+            </div>
+            <div class="image-container">
+                <div class="image-placeholder small">Bild</div>
+                <figcaption>Produkt</figcaption>
+            </div>
+            <div class="image-container">
+                <div class="image-placeholder small">Bild</div>
+                <figcaption>Produkt</figcaption>
+            </div>
+            <div class="image-container">
+                <div class="image-placeholder small">Bild</div>
+                <figcaption>Produkt</figcaption>
+            </div>
+        </section>
+    </main>
+
+<footer>
+    <p>&copy; 2025 Schulprojekt - Keine reale Website</p>
+    <p>Mitwirkende: Remo Hess, Remo Auf der Maur, Simon Lampart</p>
+    <div class="social-links">
+        <a href="#" target="_blank" rel="noopener noreferrer">Facebook</a> |
+        <a href="#" target="_blank" rel="noopener noreferrer">Twitter</a> |
+        <a href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
+    </div>
+</footer>
+
+    <script>
+const burgerMenu = document.querySelector('.burger-menu');
+const nav = document.querySelector('header nav');
+const footer = document.querySelector('footer');
+
+burgerMenu.addEventListener('click', () => {
+    nav.classList.toggle('open');
+});
+
+// Footer erst anzeigen, wenn der gesamte Inhalt über dem Footer sichtbar war
+function checkFooterVisibility() {
+    const documentHeight = document.documentElement.scrollHeight;
+    const windowHeight = window.innerHeight;
+    const scrollY = window.scrollY;
+    const footerHeight = footer.offsetHeight;
+
+    // Zeige den Footer, wenn der untere Rand des sichtbaren Bereichs
+    // den Punkt erreicht, an dem der Footer normalerweise beginnen würde
+    if (scrollY + windowHeight >= documentHeight - footerHeight) {
+        footer.classList.add('visible');
+    } else {
+        footer.classList.remove('visible');
+    }
+}
+
+window.addEventListener('scroll', checkFooterVisibility);
+window.addEventListener('resize', checkFooterVisibility); // Auch bei Fenstergrößenänderung prüfen
+
+// Initial einmal prüfen, falls der Inhalt nicht sofort Scrollen erfordert
+checkFooterVisibility();
+
+// JavaScript für die aktive Klasse (optional, falls du es dynamisch setzen möchtest)
+document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('header nav ul li a');
+    const currentPath = window.location.pathname;
+
+    navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPath) {
+            link.classList.add('active');
+        }
+    });
+});
+    </script>
+</body>
+</html>

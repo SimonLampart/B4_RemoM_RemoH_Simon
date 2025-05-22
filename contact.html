@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gourmet Globe</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/contact.css">
+</head>
+<body>
+    <header>
+        <div class="logo-placeholder">Logo</div>
+        <div class="burger-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="contact.html"class="active">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <section class="lead-text">
+            <h1>Kontakt</h1>
+            <p>Einleitungstext, der die Hauptaussage der Seite zusammenfasst. Dieser Text ist über die volle Breite und soll den Leser neugierig machen, mehr zu erfahren. Er kann etwas länger sein und die wichtigsten Punkte anteasern.</p>
+        </section>
+
+        <section class="two-columns">
+            <form action="/submit-form" method="POST">
+                <!-- Pflichtfeld: Vorname -->
+                <label for="prename">Vorname *</label><br />
+                <input type="text" id="prename" name="prename" required /><br /><br />
+ 
+                <!-- Pflichtfeld: Nachname -->
+                <label for="name">Nachname *</label><br />
+                <input type="text" id="name" name="name" required /><br /><br />
+ 
+                <!-- Pflichtfeld: E-Mail -->
+                <label for="email">E-Mail-Adresse *</label><br />
+                <input type="email" id="email" name="email" required /><br /><br />
+ 
+            <!-- Absenden -->
+            <button type="submit">Absenden</button>
+        </form>
+        </section>
+    </main>
+
+<footer>
+    <p>&copy; 2025 Schulprojekt - Keine reale Website</p>
+    <p>Mitwirkende: Remo Hess, Remo Auf der Maur, Simon Lampart</p>
+    <div class="social-links">
+        <a href="#" target="_blank" rel="noopener noreferrer">Facebook</a> |
+        <a href="#" target="_blank" rel="noopener noreferrer">Twitter</a> |
+        <a href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
+    </div>
+</footer>
+
+    <script>
+const burgerMenu = document.querySelector('.burger-menu');
+const nav = document.querySelector('header nav');
+const footer = document.querySelector('footer');
+
+burgerMenu.addEventListener('click', () => {
+    nav.classList.toggle('open');
+});
+
+// Footer erst anzeigen, wenn der gesamte Inhalt über dem Footer sichtbar war
+function checkFooterVisibility() {
+    const documentHeight = document.documentElement.scrollHeight;
+    const windowHeight = window.innerHeight;
+    const scrollY = window.scrollY;
+    const footerHeight = footer.offsetHeight;
+
+    // Zeige den Footer, wenn der untere Rand des sichtbaren Bereichs
+    // den Punkt erreicht, an dem der Footer normalerweise beginnen würde
+    if (scrollY + windowHeight >= documentHeight - footerHeight) {
+        footer.classList.add('visible');
+    } else {
+        footer.classList.remove('visible');
+    }
+}
+
+window.addEventListener('scroll', checkFooterVisibility);
+window.addEventListener('resize', checkFooterVisibility); // Auch bei Fenstergrößenänderung prüfen
+
+// Initial einmal prüfen, falls der Inhalt nicht sofort Scrollen erfordert
+checkFooterVisibility();
+
+// JavaScript für die aktive Klasse (optional, falls du es dynamisch setzen möchtest)
+document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('header nav ul li a');
+    const currentPath = window.location.pathname;
+
+    navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPath) {
+            link.classList.add('active');
+        }
+    });
+});
+    </script>
+</body>
+</html>
