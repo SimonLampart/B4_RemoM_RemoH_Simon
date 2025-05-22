@@ -1,0 +1,84 @@
+/* Formular-Styling */
+.two-columns form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    flex: 1; /* Nimmt den verfügbaren Platz im two-columns Layout ein */
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Abstand zwischen den Formularfeldern */
+}
+
+.two-columns form label {
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px; /* Kleiner Abstand zwischen Label und Input */
+    display: block; /* Stellt sicher, dass das Label eine eigene Zeile einnimmt */
+}
+
+.two-columns form input[type="text"],
+.two-columns form input[type="email"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box; /* Padding und Border in die Breite einbeziehen */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.two-columns form input[type="text"]:focus,
+.two-columns form input[type="email"]:focus {
+    border-color: #EA4F8B; /* Border wird beim Fokus rosa */
+    box-shadow: 0 0 8px rgba(234, 79, 139, 0.2); /* Leichter Schatten beim Fokus */
+    outline: none; /* Entfernt den Standard-Browser-Outline */
+}
+
+.two-columns form button[type="submit"] {
+    background-color: #EA4F8B;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    align-self: flex-start; /* Button linksbündig ausrichten */
+    margin-top: 20px; /* Abstand zum letzten Eingabefeld */
+}
+
+.two-columns form button[type="submit"]:hover {
+    background-color: #D33D7A; /* Etwas dunklerer Rosa-Ton beim Hover */
+    transform: translateY(-2px); /* Leichter "Pop"-Effekt beim Hover */
+}
+
+.two-columns form button[type="submit"]:active {
+    transform: translateY(0); /* Zurück zum Ursprung beim Klicken */
+}
+
+/* Optional: Fehlermeldungen (falls du sie hinzufügen möchtest) */
+.two-columns form input:invalid:not(:placeholder-shown) {
+    border-color: #e74c3c; /* Rot für ungültige Eingaben */
+}
+
+.two-columns form input:invalid:not(:placeholder-shown) + .error-message {
+    display: block;
+    color: #e74c3c;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+/* Anpassung für mobile Ansicht, damit das Formular nicht zu schmal wird */
+@media (max-width: 700px) {
+    .two-columns form {
+        padding: 20px;
+        gap: 10px;
+    }
+
+    .two-columns form button[type="submit"] {
+        width: 100%; /* Button volle Breite auf kleinen Bildschirmen */
+        text-align: center;
+    }
+}
