@@ -32,7 +32,7 @@
         </section>
 
         <section class="two-columns">
-            <form action="/submit-form" method="POST">
+            <form id="contactForm">
                 <!-- Pflichtfeld: Vorname -->
                 <label for="prename">Vorname *</label><br />
                 <input type="text" id="prename" name="prename" required /><br /><br />
@@ -104,5 +104,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
     </script>
+
+<script>
+  const form = document.getElementById("contactForm");
+  const prenameField = document.getElementById("prename");
+  const nameField = document.getElementById("name");
+  const emailField = document.getElementById("email");
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault(); // verhindert Standard-Formularverhalten
+
+    await databaseClient.insertInto("form", {
+      prename: prenameField.value,
+      name: nameField.value,
+      email: emailField.value,
+      created_at: new Date().toISOString(), // optional, falls nicht automatisch
+    });
+
+    alert("Formular erfolgreich gesendet!");
+    form.reset(); // optional: Formular zurücksetzen
+  });
+</script>
 </body>
 </html>
