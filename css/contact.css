@@ -4,17 +4,17 @@
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    flex: 1; /* Nimmt den verfügbaren Platz im two-columns Layout ein */
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Abstand zwischen den Formularfeldern */
+    gap: 15px;
 }
 
 .two-columns form label {
     font-weight: bold;
     color: #555;
-    margin-bottom: 5px; /* Kleiner Abstand zwischen Label und Input */
-    display: block; /* Stellt sicher, dass das Label eine eigene Zeile einnimmt */
+    margin-bottom: 5px;
+    display: block;
 }
 
 .two-columns form input[type="text"],
@@ -24,15 +24,15 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1em;
-    box-sizing: border-box; /* Padding und Border in die Breite einbeziehen */
+    box-sizing: border-box;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .two-columns form input[type="text"]:focus,
 .two-columns form input[type="email"]:focus {
-    border-color: #EA4F8B; /* Border wird beim Fokus rosa */
-    box-shadow: 0 0 8px rgba(234, 79, 139, 0.2); /* Leichter Schatten beim Fokus */
-    outline: none; /* Entfernt den Standard-Browser-Outline */
+    border-color: #EA4F8B;
+    box-shadow: 0 0 8px rgba(234, 79, 139, 0.2);
+    outline: none;
 }
 
 .two-columns form button[type="submit"] {
@@ -45,22 +45,21 @@
     font-size: 1.1em;
     font-weight: bold;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    align-self: flex-start; /* Button linksbündig ausrichten */
-    margin-top: 20px; /* Abstand zum letzten Eingabefeld */
+    align-self: flex-start;
+    margin-top: 20px;
 }
 
 .two-columns form button[type="submit"]:hover {
-    background-color: #D33D7A; /* Etwas dunklerer Rosa-Ton beim Hover */
-    transform: translateY(-2px); /* Leichter "Pop"-Effekt beim Hover */
+    background-color: #D33D7A;
+    transform: translateY(-2px);
 }
 
 .two-columns form button[type="submit"]:active {
-    transform: translateY(0); /* Zurück zum Ursprung beim Klicken */
+    transform: translateY(0);
 }
 
-/* Optional: Fehlermeldungen (falls du sie hinzufügen möchtest) */
 .two-columns form input:invalid:not(:placeholder-shown) {
-    border-color: #e74c3c; /* Rot für ungültige Eingaben */
+    border-color: #e74c3c;
 }
 
 .two-columns form input:invalid:not(:placeholder-shown) + .error-message {
@@ -70,15 +69,226 @@
     margin-top: 5px;
 }
 
-/* Anpassung für mobile Ansicht, damit das Formular nicht zu schmal wird */
 @media (max-width: 700px) {
     .two-columns form {
         padding: 20px;
         gap: 10px;
     }
-
     .two-columns form button[type="submit"] {
-        width: 100%; /* Button volle Breite auf kleinen Bildschirmen */
+        width: 100%;
         text-align: center;
     }
 }
+
+.contact-section-bg-1 {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.contact-section-bg-2 {
+    background-color: #f0e6e6;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.contact-section-bg-3 {
+    background-color: #e9e9e9;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.contact-section-bg-4 {
+    background-color: #ffe0e6;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Throbber-Styling */
+.throbber-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s ease;
+}
+
+.throbber-overlay.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.throbber {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #EA4F8B;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Glücksrad-Wrapper */
+.roulette-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s ease;
+}
+
+.roulette-wrapper.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.roulette-wheel {
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    border: 15px solid #EA4F8B;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(255, 255, 255, 0.8);
+    position: relative;
+    margin-bottom: 30px;
+    transition: transform 4s cubic-bezier(0.25, 0.1, 0.25, 1);
+    background: conic-gradient(
+        #FFC0CB 0deg 60deg,
+        #EA4F8B 60deg 120deg,
+        #FF69B4 120deg 180deg,
+        #FFC0CB 180deg 240deg,
+        #EA4F8B 240deg 300deg,
+        #FF69B4 300deg 360deg
+    );
+}
+
+/* Text-Bereiche im Glücksrad - als Positionen absolut im Kreis mit Drehung */
+.roulette-segment {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    top: 50%;
+    left: 50%;
+    transform-origin: 0% 0%;
+    pointer-events: none;
+}
+
+/* Text Wrapper pro Segment */
+.segment-text {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform-origin: 0 50%;
+    color: white;
+    font-weight: bold;
+    font-size: 1em;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    white-space: nowrap;
+}
+
+/* Position und Rotation der einzelnen Texte, damit sie zentriert auf den Segmenten stehen */
+.segment-1 .segment-text {
+    transform: rotate(30deg) translate(100px) rotate(-30deg);
+}
+.segment-2 .segment-text {
+    transform: rotate(90deg) translate(100px) rotate(-90deg);
+}
+.segment-3 .segment-text {
+    transform: rotate(150deg) translate(100px) rotate(-150deg);
+}
+.segment-4 .segment-text {
+    transform: rotate(210deg) translate(100px) rotate(-210deg);
+}
+.segment-5 .segment-text {
+    transform: rotate(270deg) translate(100px) rotate(-270deg);
+}
+.segment-6 .segment-text {
+    transform: rotate(330deg) translate(100px) rotate(-330deg);
+}
+
+.roulette-pointer {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 40px solid #EA4F8B;
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.3));
+}
+
+.roulette-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    border: 8px solid #D33D7A;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2), 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 3;
+    pointer-events: none;
+}
+
+.roulette-result {
+    background-color: #FFF;
+    padding: 25px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    max-width: 320px;
+    font-size: 1.2em;
+    color: #EA4F8B;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.roulette-close-button {
+    background-color: #EA4F8B;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 28px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+}
+
+.roulette-close-button:hover {
+    background-color: #D33D7A;
+}
+
