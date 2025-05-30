@@ -34,45 +34,32 @@
         </section>
 
         <section class="two-columns contact-section-bg-1">
-            <form id="contactForm">
-                <label for="prename">Vorname *</label><br />
-                <input type="text" id="prename" name="prename" required /><br /><br />
-
-                <label for="name">Nachname *</label><br />
-                <input type="text" id="name" name="name" required /><br /><br />
-
-                <label for="email">E-Mail-Adresse *</label><br />
-                <input type="email" id="email" name="email" required /><br /><br />
-
-                <button type="submit">Absenden</button>
-            </form>
+                    <form id="contactForm">
+          <label for="prename">Vorname *</label><br />
+          <input type="text" id="prename" name="prename" required /><br /><br />
+ 
+          <label for="name">Nachname *</label><br />
+          <input type="text" id="name" name="name" required /><br /><br />
+ 
+          <label for="email">E-Mail-Adresse *</label><br />
+          <input type="email" id="email" name="email" required /><br /><br />
+ 
+          <button type="button" id="submit">Absenden</button>
+        </form>
         </section>
 
         <div class="throbber-overlay" id="throbberOverlay">
             <div class="throbber"></div>
         </div>
 
-        <!-- Geflickter Roulette-Wrapper -->
         <div class="roulette-wrapper" id="rouletteWrapper">
             <div class="roulette-wheel" id="rouletteWheel">
-                <div class="roulette-segment segment-1">
-                    <div class="segment-text">5.- Gutschein</div>
-                </div>
-                <div class="roulette-segment segment-2">
-                    <div class="segment-text">10.- Gutschein</div>
-                </div>
-                <div class="roulette-segment segment-3">
-                    <div class="segment-text">15.- Gutschein</div>
-                </div>
-                <div class="roulette-segment segment-4">
-                    <div class="segment-text">20.- Gutschein</div>
-                </div>
-                <div class="roulette-segment segment-5">
-                    <div class="segment-text">25.- Gutschein</div>
-                </div>
-                <div class="roulette-segment segment-6">
-                    <div class="segment-text">30.- Gutschein</div>
-                </div>
+                <div class="roulette-segment segment-1"></div>
+                <div class="roulette-segment segment-2"></div>
+                <div class="roulette-segment segment-3"></div>
+                <div class="roulette-segment segment-4"></div>
+                <div class="roulette-segment segment-5"></div>
+                <div class="roulette-segment segment-6"></div>
                 <div class="roulette-center"></div>
             </div>
 
@@ -95,8 +82,6 @@
             <a href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
         </div>
     </footer>
-
-    
     
     <script>
         const burgerMenu = document.querySelector('.burger-menu');
@@ -105,7 +90,7 @@
 
         const contactForm = document.querySelector('.two-columns form');
         const throbberOverlay = document.getElementById('throbberOverlay');
-        const rouletteWrapper = document.getElementById('rouletteWrapper'); // Neuer Wrapper
+        const rouletteWrapper = document.getElementById('rouletteWrapper');
         const rouletteWheel = document.getElementById('rouletteWheel');
         const rouletteResult = document.getElementById('rouletteResult');
         const winningMessageSpan = document.getElementById('winningMessage');
@@ -116,10 +101,10 @@
         const prizes = [
             { name: "5.- Gutschein", code: "GUTSCHEIN5", type: "gutschein" },
             { name: "Gratis Versand", code: "GRATISVERSAND", type: "gratis_versand" },
-            { name: "Niete", code: "LEIDERKEINGLUECK", type: "niete" },
+            { name: "Niete", code: "", type: "niete" },
             { name: "5.- Gutschein", code: "GUTSCHEIN5", type: "gutschein" },
             { name: "Gratis Versand", code: "GRATISVERSAND", type: "gratis_versand" },
-            { name: "Niete", code: "LEIDERKEINGLUECK", type: "niete" }
+            { name: "Niete", code: "", type: "niete" }
         ];
 
         burgerMenu.addEventListener('click', () => {
@@ -174,38 +159,33 @@
                 winningCodeParagraph.textContent = ''; // Code zurücksetzen
 
                 // Zufällige Zahl für das Gewinnsegment (0-5 für Index)
-                const winningIndex = Math.floor(Math.random() * prizes.length); // 0 bis 5
+                const winningIndex = Math.floor(Math.random() * prizes.length);
                 
-                // Berechne die Gradzahl für das Gewinnsegment (jedes Segment 60 Grad bei 6 Segmenten)
-                // Wir drehen es so, dass der Pfeil auf die Mitte des Segments zeigt.
-                // 360 / 6 = 60 Grad pro Segment.
-                // Wir wollen, dass der Pfeil auf das *gewählte* Segment zeigt.
-                // Die Segmente sind im CSS von 0 Grad (Segment 1) bis 300 Grad (Segment 6) positioniert.
-                // Um auf die Mitte des Segments zu zeigen: (Index * 60) + (60 / 2) = Index * 60 + 30
-                // Da der Pfeil oben ist und die Segmente im Uhrzeigersinn angeordnet sind,
-                // müssen wir die Rotation so anpassen, dass das Gewinnsegment unter dem Pfeil landet.
-                // Eine Rotation von 0 Grad würde das Segment 1 nach oben zeigen.
-                // Wenn wir Segment 1 gewinnen (Index 0), wollen wir 330 Grad Rotation (360 - 30).
-                // Wenn wir Segment 2 gewinnen (Index 1), wollen wir 270 Grad Rotation (360 - 30 - 60).
-                // ...
-                // Formel: (360 * n) - (winningIndex * degreesPerSegment) - (degreesPerSegment / 2)
-                // n = Anzahl der vollen Umdrehungen (z.B. 5 für eine gute Animation)
-                const degreesPerSegment = 360 / prizes.length; // 60
-                const numSpins = 5; // Anzahl der vollen Umdrehungen
-                const targetRotation = (360 * numSpins) - (winningIndex * degreesPerSegment) - (degreesPerSegment / 2);
+                const degreesPerSegment = 360 / prizes.length; // 60 Grad pro Segment
+
+                // Berechnung der Rotation, um das MITTE des Gewinnsegments unter den Pointer zu bringen.
+                // Der Pointer zeigt nach oben (12 Uhr).
+                // Die Segmente starten bei 0 Grad rechts (3 Uhr) im Uhrzeigersinn.
+                // Daher müssen wir das Rad so drehen, dass der Mittelpunkt des Gewinnsegments auf die 90-Grad-Position (oben) kommt.
+                // Der Mittelpunkt des `winningIndex`-Segments liegt bei (winningIndex * degreesPerSegment) + (degreesPerSegment / 2).
+                // Um diesen Punkt nach 90 Grad zu bewegen, müssen wir das Rad um (90 - diesem Punkt) drehen.
+                // Zusätzlich fügen wir mehrere volle Umdrehungen hinzu für den Spin-Effekt.
+                const numSpins = 5;
+                const targetDegree = (winningIndex * degreesPerSegment) + (degreesPerSegment / 2);
+                const finalRotation = (360 * numSpins) + (90 - targetDegree); // 90 Grad ist die 12-Uhr-Position
 
                 // Rotation anwenden
-                rouletteWheel.style.transform = `rotate(${targetRotation}deg)`;
+                rouletteWheel.style.transform = `rotate(${finalRotation}deg)`;
 
                 // Ergebnis nach der Drehung anzeigen (muss mit der Transition-Dauer des Rades übereinstimmen)
                 setTimeout(() => {
                     const wonPrize = prizes[winningIndex];
-                    winningMessageSpan.textContent = `Du hast gewonnen: ${wonPrize.name}!`;
+                    winningMessageSpan.textContent = `${wonPrize.name}!`;
                     
                     if (wonPrize.type !== "niete") {
                         winningCodeParagraph.textContent = `Dein Code: ${wonPrize.code}`;
                     } else {
-                        winningCodeParagraph.textContent = "Versuch es bald wieder!";
+                        winningCodeParagraph = "Versuch es bald wieder!";
                     }
                     
                     rouletteResult.classList.add('visible');
@@ -216,8 +196,11 @@
         closeRouletteButton.addEventListener('click', () => {
             rouletteWrapper.classList.remove('visible');
             // Reset des Glücksrads für die nächste Verwendung
-            rouletteWheel.style.transform = `rotate(0deg)`;
+            rouletteWheel.style.transform = `rotate(0deg)`; // Rad zurücksetzen
+            rouletteResult.classList.remove('visible'); // Ergebnis verstecken
         });
     </script>
+    <script src="js/databaseClient.js"></script>
+    <script src="js/form.js"></script>
 </body>
 </html>
