@@ -44,7 +44,7 @@
           <label for="email">E-Mail-Adresse *</label><br />
           <input type="email" id="email" name="email" required /><br /><br />
  
-          <button type="button" id="submit">Absenden</button>
+          <button type="submit" id="submit">Absenden</button>
         </form>
         </section>
 
@@ -83,123 +83,7 @@
         </div>
     </footer>
     
-    <script>
-        const burgerMenu = document.querySelector('.burger-menu');
-        const nav = document.querySelector('header nav');
-        const footer = document.querySelector('footer');
-
-        const contactForm = document.querySelector('.two-columns form');
-        const throbberOverlay = document.getElementById('throbberOverlay');
-        const rouletteWrapper = document.getElementById('rouletteWrapper');
-        const rouletteWheel = document.getElementById('rouletteWheel');
-        const rouletteResult = document.getElementById('rouletteResult');
-        const winningMessageSpan = document.getElementById('winningMessage');
-        const winningCodeParagraph = document.getElementById('winningCode');
-        const closeRouletteButton = document.getElementById('closeRouletteButton');
-
-        // Definition der möglichen Gewinne und ihrer Codes
-        const prizes = [
-            { name: "5.- Gutschein", code: "GUTSCHEIN5", type: "gutschein" },
-            { name: "Gratis Versand", code: "GRATISVERSAND", type: "gratis_versand" },
-            { name: "Niete", code: "", type: "niete" },
-            { name: "5.- Gutschein", code: "GUTSCHEIN5", type: "gutschein" },
-            { name: "Gratis Versand", code: "GRATISVERSAND", type: "gratis_versand" },
-            { name: "Niete", code: "", type: "niete" }
-        ];
-
-        burgerMenu.addEventListener('click', () => {
-            nav.classList.toggle('open');
-        });
-
-        function checkFooterVisibility() {
-            const documentHeight = document.documentElement.scrollHeight;
-            const windowHeight = window.innerHeight;
-            const scrollY = window.scrollY;
-            const footerHeight = footer.offsetHeight;
-
-            if (scrollY + windowHeight >= documentHeight - footerHeight) {
-                footer.classList.add('visible');
-            } else {
-                footer.classList.remove('visible');
-            }
-        }
-
-        window.addEventListener('scroll', checkFooterVisibility);
-        window.addEventListener('resize', checkFooterVisibility);
-        checkFooterVisibility();
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const navLinks = document.querySelectorAll('header nav ul li a');
-            const currentPath = window.location.pathname.split('/').pop();
-
-            navLinks.forEach(link => {
-                const linkPath = link.getAttribute('href').split('/').pop();
-                if (linkPath === currentPath) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Formular-Submission und Glücksrad-Logik
-        contactForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // Standard-Formularversand verhindern
-
-            // Throbber anzeigen
-            throbberOverlay.classList.add('visible');
-
-            // Simulieren einer Formularübermittlung (z.B. mit fetch oder setTimeout)
-            setTimeout(() => {
-                // Throbber ausblenden
-                throbberOverlay.classList.remove('visible');
-
-                // Glücksrad anzeigen
-                rouletteWrapper.classList.add('visible');
-                rouletteResult.classList.remove('visible'); // Ergebnis verstecken, falls vorher sichtbar
-                winningMessageSpan.textContent = ''; // Nachricht zurücksetzen
-                winningCodeParagraph.textContent = ''; // Code zurücksetzen
-
-                // Zufällige Zahl für das Gewinnsegment (0-5 für Index)
-                const winningIndex = Math.floor(Math.random() * prizes.length);
-                
-                const degreesPerSegment = 360 / prizes.length; // 60 Grad pro Segment
-
-                // Berechnung der Rotation, um das MITTE des Gewinnsegments unter den Pointer zu bringen.
-                // Der Pointer zeigt nach oben (12 Uhr).
-                // Die Segmente starten bei 0 Grad rechts (3 Uhr) im Uhrzeigersinn.
-                // Daher müssen wir das Rad so drehen, dass der Mittelpunkt des Gewinnsegments auf die 90-Grad-Position (oben) kommt.
-                // Der Mittelpunkt des `winningIndex`-Segments liegt bei (winningIndex * degreesPerSegment) + (degreesPerSegment / 2).
-                // Um diesen Punkt nach 90 Grad zu bewegen, müssen wir das Rad um (90 - diesem Punkt) drehen.
-                // Zusätzlich fügen wir mehrere volle Umdrehungen hinzu für den Spin-Effekt.
-                const numSpins = 5;
-                const targetDegree = (winningIndex * degreesPerSegment) + (degreesPerSegment / 2);
-                const finalRotation = (360 * numSpins) + (90 - targetDegree); // 90 Grad ist die 12-Uhr-Position
-
-                // Rotation anwenden
-                rouletteWheel.style.transform = `rotate(${finalRotation}deg)`;
-
-                // Ergebnis nach der Drehung anzeigen (muss mit der Transition-Dauer des Rades übereinstimmen)
-                setTimeout(() => {
-                    const wonPrize = prizes[winningIndex];
-                    winningMessageSpan.textContent = `${wonPrize.name}!`;
-                    
-                    if (wonPrize.type !== "niete") {
-                        winningCodeParagraph.textContent = `Dein Code: ${wonPrize.code}`;
-                    } else {
-                        winningCodeParagraph = "Versuch es bald wieder!";
-                    }
-                    
-                    rouletteResult.classList.add('visible');
-                }, 4000); // Nach 4 Sekunden, da die Drehung 4 Sekunden dauert (entspricht der CSS-Transition)
-            }, 2000); // Simulierte 2 Sekunden Übermittlungszeit
-        });
-
-        closeRouletteButton.addEventListener('click', () => {
-            rouletteWrapper.classList.remove('visible');
-            // Reset des Glücksrads für die nächste Verwendung
-            rouletteWheel.style.transform = `rotate(0deg)`; // Rad zurücksetzen
-            rouletteResult.classList.remove('visible'); // Ergebnis verstecken
-        });
-    </script>
+    <script src="js/common.js"></script>
     <script src="js/databaseClient.js"></script>
     <script src="js/form.js"></script>
 </body>
