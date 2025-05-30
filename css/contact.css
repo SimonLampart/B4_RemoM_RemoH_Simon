@@ -81,36 +81,13 @@
 }
 
 .contact-section-bg-1 {
-    background-color: #f8f8f8;
+ 
     padding: 20px;
     border-radius: 8px;
     margin-bottom: 30px;
-    text-align: center;
 }
 
-.contact-section-bg-2 {
-    background-color: #f0e6e6;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 30px;
-    text-align: center;
-}
 
-.contact-section-bg-3 {
-    background-color: #e9e9e9;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 30px;
-    text-align: center;
-}
-
-.contact-section-bg-4 {
-    background-color: #ffe0e6;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 30px;
-    text-align: center;
-}
 
 /* Throbber-Styling */
 .throbber-overlay {
@@ -177,76 +154,34 @@
     border-radius: 50%;
     border: 15px solid #EA4F8B;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(255, 255, 255, 0.8);
-    position: relative;
+    position: relative; /* Wichtig für die Positionierung des Pointers */
     margin-bottom: 30px;
     transition: transform 4s cubic-bezier(0.25, 0.1, 0.25, 1);
     background: conic-gradient(
-        #FFC0CB 0deg 60deg,
-        #EA4F8B 60deg 120deg,
-        #FF69B4 120deg 180deg,
-        #FFC0CB 180deg 240deg,
-        #EA4F8B 240deg 300deg,
-        #FF69B4 300deg 360deg
+        #FFC0CB 0deg 60deg,    /* Segment 0 */
+        #EA4F8B 60deg 120deg,  /* Segment 1 */
+        #FF69B4 120deg 180deg, /* Segment 2 */
+        #FFC0CB 180deg 240deg, /* Segment 3 */
+        #EA4F8B 240deg 300deg, /* Segment 4 */
+        #FF69B4 300deg 360deg  /* Segment 5 */
     );
 }
 
-/* Text-Bereiche im Glücksrad - als Positionen absolut im Kreis mit Drehung */
-.roulette-segment {
-    position: absolute;
-    width: 50%;
-    height: 50%;
-    top: 50%;
-    left: 50%;
-    transform-origin: 0% 0%;
-    pointer-events: none;
-}
-
-/* Text Wrapper pro Segment */
-.segment-text {
-    position: absolute;
-    top: 50%;
-    left: 100%;
-    transform-origin: 0 50%;
-    color: white;
-    font-weight: bold;
-    font-size: 1em;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
-    white-space: nowrap;
-}
-
-/* Position und Rotation der einzelnen Texte, damit sie zentriert auf den Segmenten stehen */
-.segment-1 .segment-text {
-    transform: rotate(30deg) translate(100px) rotate(-30deg);
-}
-.segment-2 .segment-text {
-    transform: rotate(90deg) translate(100px) rotate(-90deg);
-}
-.segment-3 .segment-text {
-    transform: rotate(150deg) translate(100px) rotate(-150deg);
-}
-.segment-4 .segment-text {
-    transform: rotate(210deg) translate(100px) rotate(-210deg);
-}
-.segment-5 .segment-text {
-    transform: rotate(270deg) translate(100px) rotate(-270deg);
-}
-.segment-6 .segment-text {
-    transform: rotate(330deg) translate(100px) rotate(-330deg);
-}
-
+/* Der Pointer sitzt nun relativ zum roulette-wrapper */
 .roulette-pointer {
     width: 0;
     height: 0;
     border-left: 20px solid transparent;
     border-right: 20px solid transparent;
-    border-top: 40px solid #EA4F8B;
-    position: absolute;
-    top: -50px;
+    border-top: 40px solid lightblue;
+    position: absolute; /* Absolut positioniert im roulette-wrapper */
+    top: calc(36% - 190px - 40px); /* Oben am Rad ansetzen (Hälfte Radhöhe - Pointerhöhe) */
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
     filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.3));
 }
+
 
 .roulette-center {
     position: absolute;
@@ -273,10 +208,10 @@
     font-size: 1.2em;
     color: #EA4F8B;
     font-weight: bold;
-    margin-bottom: 15px;
+    margin-top: 30px; /* Abstand zum Rad */
 }
 
-.roulette-close-button {
+.close-roulette-button { /* Name des Buttons angepasst */
     background-color: #EA4F8B;
     color: white;
     border: none;
@@ -286,9 +221,9 @@
     font-size: 1.1em;
     font-weight: 700;
     transition: background-color 0.3s ease;
+    margin-top: 15px; /* Abstand zum Ergebnis-Text */
 }
 
-.roulette-close-button:hover {
+.close-roulette-button:hover {
     background-color: #D33D7A;
 }
-
