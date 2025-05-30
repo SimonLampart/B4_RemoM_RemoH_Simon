@@ -58,48 +58,6 @@
     </div>
 </footer>
 
-    <script>
-const burgerMenu = document.querySelector('.burger-menu');
-const nav = document.querySelector('header nav');
-const footer = document.querySelector('footer');
-
-burgerMenu.addEventListener('click', () => {
-    nav.classList.toggle('open');
-});
-
-// Footer erst anzeigen, wenn der gesamte Inhalt über dem Footer sichtbar war
-function checkFooterVisibility() {
-    const documentHeight = document.documentElement.scrollHeight;
-    const windowHeight = window.innerHeight;
-    const scrollY = window.scrollY;
-    const footerHeight = footer.offsetHeight;
-
-    // Zeige den Footer, wenn der untere Rand des sichtbaren Bereichs
-    // den Punkt erreicht, an dem der Footer normalerweise beginnen würde
-    if (scrollY + windowHeight >= documentHeight - footerHeight) {
-        footer.classList.add('visible');
-    } else {
-        footer.classList.remove('visible');
-    }
-}
-
-window.addEventListener('scroll', checkFooterVisibility);
-window.addEventListener('resize', checkFooterVisibility); // Auch bei Fenstergrößenänderung prüfen
-
-// Initial einmal prüfen, falls der Inhalt nicht sofort Scrollen erfordert
-checkFooterVisibility();
-
-// JavaScript für die aktive Klasse (optional, falls du es dynamisch setzen möchtest)
-document.addEventListener('DOMContentLoaded', () => {
-    const navLinks = document.querySelectorAll('header nav ul li a');
-    const currentPath = window.location.pathname;
-
-    navLinks.forEach(link => {
-        if (link.getAttribute('href') === currentPath) {
-            link.classList.add('active');
-        }
-    });
-});
-    </script>
+<script src="js/common.js"></script>
 </body>
 </html>
