@@ -33,6 +33,10 @@ header .logo-placeholder {
     font-size: 1.2em;
 }
 
+.logo {
+max-height: 6em;
+}
+
 header nav {
     display: flex;
 }
@@ -52,12 +56,16 @@ header nav ul li a {
     color: white;
     text-decoration: none;
     transition: color 0.3s ease; /* Sanfter Übergang für den Hover-Effekt */
+    font-size: 1.4em;
 }
 
 header nav ul li a:hover {
     color: #FFD1DC; /* Sehr helles Pastellpink */
 }
 
+a {
+    text-decoration: none;
+}
 
 header nav ul li a.active {
     font-weight: bold; /* Macht den Link fett */
@@ -84,7 +92,7 @@ header nav ul li a.active {
     margin-left: calc(-100vw / 2 + 100% / 2);
     margin-right: calc(-100vw / 2 + 100% / 2);
     margin-bottom: 0;
-    margin-top: -20px; /* Entfernt den Abstand zum Header */
+    margin-top: -80px; /* Entfernt den Abstand zum Header */
 
 }
 
@@ -93,7 +101,7 @@ header nav ul li a.active {
     display: block;
     width: 100%;
     height: 20em;
-    object-fit: cover; /* Optional: Skaliert das Bild und schneidet es bei Bedarf zu */
+
 }
 
 /* Lead Text (direkt unter dem Bild) */
@@ -165,10 +173,12 @@ h1 {
     display: block; /* Macht den Button zu einem Block-Element */
     margin-left: auto;
     margin-right: auto;
+    text-decoration: none;
 }
 
 .two-columns .column-right .read-more-button:hover {
     background-color: #EA6C8B;
+    text-decoration: none;
 }
 
 /* Restliche Styles (unverändert) */
@@ -299,6 +309,10 @@ footer {
 
 footer.visible {
     bottom: 0;
+}
+
+.social-links a {
+    color: white; /* This will make any text directly inside .social-links white */
 }
 
 /* Media Query für Tablettformat und kleiner (Burger-Menü) */
